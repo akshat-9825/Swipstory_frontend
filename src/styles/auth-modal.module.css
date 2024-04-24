@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.close_button {
+    color: red;
+    cursor: pointer;
+    height: 3.6rem;
+    width: 3.6rem;
+    position: absolute;
+    top: 7.6rem;
+    right: 6.9rem;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 5.6rem;
+    width: 60%;
+}
+
+.heading {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 3.255rem;
+    text-align: center;
+}
+
+.form_container {
+    display: flex;
+    flex-direction: column;
+    gap: 7.2rem;
+    align-items: center;
+}
+
+.button {
+    color: black;
+    width: fit-content;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 3.6rem;
+    width: 100%;
+}
+
+.input_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.input_label {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 2.604rem;
+}
+
+.input {
+    width: 50%;
+    height: 3.5rem;
+    padding: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.562rem;
+    border: 0.1rem solid #000000;
+}
+
+.password_input {
+    padding-right: 3.2rem;
+}
+
+.show_password {
+    position: absolute;
+    right: 0.7rem;
+    top: 0.5rem;
+    height: 2.4rem;
+    width: 2.4rem;
+    cursor: pointer;
+}

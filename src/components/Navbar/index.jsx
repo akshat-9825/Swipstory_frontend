@@ -1,3 +1,5 @@
+import { useState } from "react";
+import AuthModal from "../AuthModal";
 import Button from "../Button";
 
 import styles from "../../styles/navbar.module.css";
@@ -8,6 +10,8 @@ const buttonsData = [
 ];
 
 const Navbar = () => {
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <div className={styles.navbar_container}>
             <div className={styles.navbar_heading}>SwipTory</div>
@@ -17,9 +21,11 @@ const Navbar = () => {
                         key={index}
                         text={button.text}
                         color={button.color}
+                        onClick={() => setShowModal(true)}
                     />
                 ))}
             </div>
+            {showModal ? <AuthModal setShowModal={setShowModal} /> : null}
         </div>
     );
 };
