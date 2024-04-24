@@ -1,0 +1,11 @@
+.button {
+    border-radius: 2rem;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 2.344rem;
+    text-align: center;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    border: none;
+}
