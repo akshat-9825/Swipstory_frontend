@@ -1,0 +1,29 @@
+.filter_card {
+    width: 23.5rem;
+    height: 23.5rem;
+    border: 0.5rem;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.906rem;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #00000099;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.selected {
+    border: 0.5rem solid #00acd2;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    border-radius: 0.5rem;
+}

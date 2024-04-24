@@ -1,0 +1,15 @@
+.home_page {
+    height: 100%;
+}
+
+.homepage_content {
+    padding: 2.8rem 4.4rem 0;
+    height: 100%;
+}
+
+.filter_cards {
+    display: flex;
+    flex-direction: row;
+    gap: 3.5rem;
+    overflow-x: scroll;
+}
