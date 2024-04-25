@@ -20,13 +20,14 @@ const Navbar = () => {
                 {buttonsData.map((button, index) => (
                     <Button
                         key={index}
-                        text={button.text}
                         color={button.color}
                         onClick={() => {
                             setShowModal(true);
                             setType(button.type);
                         }}
-                    />
+                    >
+                        {button.text}
+                    </Button>
                 ))}
             </div>
             {showModal ? (

@@ -1,0 +1,32 @@
+.category_container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.category_heading {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.906rem;
+    margin-bottom: 2.7rem;
+}
+
+.stories_container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 3.906rem;
+    color: #8e8e8e;
+    min-height: 20rem;
+    justify-content: space-between;
+}
+
+.button {
+    width: fit-content;
+    margin-bottom: 6rem;
+}

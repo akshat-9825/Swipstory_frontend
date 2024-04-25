@@ -1,5 +1,6 @@
 import { useState } from "react";
 import classNames from "classnames";
+import Category from "../components/Category";
 import FilterCard from "../components/FilterCard";
 import Navbar from "../components/Navbar";
 
@@ -9,13 +10,14 @@ const HomePage = () => {
     const filterTexts = ["All", "Medical", "Fruits", "World", "India"];
     const [selectedText, setSelectedText] = useState([]);
 
-    const handleOnClick = (index) => {
-        if (selectedText.includes(index)) {
-            setSelectedText(selectedText.filter((idx) => idx !== index));
+    const handleOnClick = (text) => {
+        if (selectedText.includes(text)) {
+            setSelectedText(
+                selectedText.filter((currText) => currText !== text)
+            );
         } else {
-            setSelectedText([...selectedText, index]);
+            setSelectedText([...selectedText, text]);
         }
-        console.log(selectedText);
     };
 
     return (
@@ -29,13 +31,18 @@ const HomePage = () => {
                     )}
                 >
                     {filterTexts.map((text, index) => (
-                        <div key={index} onClick={() => handleOnClick(index)}>
+                        <div key={index} onClick={() => handleOnClick(text)}>
                             <FilterCard
                                 text={text}
-                                selected={selectedText.includes(index)}
+                                selected={selectedText.includes(text)}
                             />
                         </div>
                     ))}
+                </div>
+                <div className={styles.categories}>
+                    {selectedText.map((text, index) => {
+                        return <Category key={index} text={text} />;
+                    })}
                 </div>
             </div>
         </div>

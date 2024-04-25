@@ -1,0 +1,50 @@
+.story_card_container {
+    max-width: 25.7rem;
+    height: 45.9rem;
+    position: relative;
+    background: linear-gradient(
+        180deg,
+        #000000 7%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0) 50%,
+        #000000 93%
+    );
+    border-radius: 1rem;
+    padding: 2rem 2.6rem;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-basis: 25%;
+    cursor: pointer;
+    margin-bottom: 6rem;
+}
+
+.story_card_image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    border-radius: 1rem;
+}
+
+.story_card_text {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.story_card_heading {
+    font-size: 2rem;
+    line-height: 2.604rem;
+    text-align: left;
+}
+
+.story_card_subheading {
+    font-size: 1rem;
+    line-height: 1.302rem;
+    text-align: left;
+}
