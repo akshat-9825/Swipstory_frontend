@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { FaChevronUp } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa";
+import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import cn from "classnames";
 import PropTypes from "prop-types";
@@ -29,6 +28,7 @@ const AddStoryModal = ({ setShowModal }) => {
             "education",
         ]);
     }, [setCategoryItems]);
+
     const [newStory, setNewStory] = useState({
         data: initialData,
         metaData: {
@@ -92,6 +92,148 @@ const AddStoryModal = ({ setShowModal }) => {
         }
     };
 
+    const renderSlideCards = () => {
+        return newStory.data.map((_, idx) => (
+            <div
+                className={cn(styles.slide_card, {
+                    [styles.active_slide]: idx === index,
+                })}
+                key={idx}
+            >
+                Slide {idx + 1}
+                {idx > 2 && (
+                    <IoCloseCircleOutline
+                        className={styles.delete_slide}
+                        onClick={() => handleDeleteSlide(idx)}
+                    />
+                )}
+            </div>
+        ));
+    };
+
+    const renderCategoryItems = () => {
+        return (
+            dropDown && (
+                <div className={styles.category_items}>
+                    {categoryItems.map((item, idx) => {
+                        return (
+                            <div
+                                key={idx}
+                                className="cursor"
+                                onClick={() => handleSetCategory(item)}
+                            >
+                                {item}
+                            </div>
+                        );
+                    })}
+                </div>
+            )
+        );
+    };
+
+    const formFields = [
+        {
+            name: "heading",
+            label: "Heading :",
+            placeholder: "Your heading",
+            type: "input",
+        },
+        {
+            name: "content",
+            label: "Description :",
+            placeholder: "Story Description",
+            type: "textarea",
+            className: styles.description_input,
+        },
+        {
+            name: "imageUrl",
+            label: "Image :",
+            placeholder: "Add image url",
+            type: "input",
+        },
+        {
+            name: "category",
+            label: "Category :",
+            placeholder: "Select category",
+            type: "category",
+            className: cn(styles.input, styles.category_btn),
+        },
+    ];
+
+    const renderFormItems = () => {
+        return formFields.map((field, idx) => (
+            <div className={styles.form_item} key={idx}>
+                <div className={styles.input_label}>{field.label}</div>
+                {field.type === "textarea" ? (
+                    <textarea
+                        className={cn(styles.input, field.className)}
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        onChange={handleChange}
+                        value={newStory.data[index]?.[field.name]}
+                    />
+                ) : field.type === "category" ? (
+                    <div className={field.className}>
+                        {newStory.metaData.category || field.placeholder}
+                        {!dropDown ? (
+                            <FaChevronDown
+                                className={styles.chevron}
+                                onClick={handleDropDown}
+                            />
+                        ) : (
+                            <FaChevronUp
+                                className={styles.chevron}
+                                onClick={handleDropDown}
+                            />
+                        )}
+                        {renderCategoryItems()}
+                    </div>
+                ) : (
+                    <input
+                        className={styles.input}
+                        type="text"
+                        name={field.name}
+                        placeholder={field.placeholder}
+                        onChange={handleChange}
+                        value={newStory.data[index]?.[field.name]}
+                    />
+                )}
+            </div>
+        ));
+    };
+
+    const buttonConfigs = [
+        {
+            label: "Previous",
+            onClick: () => handleNavBtn("prev"),
+            color: "#7EFF73",
+        },
+        {
+            label: "Next",
+            onClick: () => handleNavBtn("next"),
+            color: "#73ABFF",
+        },
+        {
+            label: "Post",
+            onClick: handleSubmit,
+            className: styles.post_button,
+            color: "#FF7373",
+        },
+    ];
+
+    const renderButtons = () => {
+        return buttonConfigs.map((button, idx) => (
+            <Button
+                key={idx}
+                className={cn(styles.button, button.className)}
+                onClick={button.onClick}
+                color={button.color}
+            >
+                {button.label}
+            </Button>
+        ));
+    };
+
     return (
         <Modal
             setShowModal={setShowModal}
@@ -103,28 +245,8 @@ const AddStoryModal = ({ setShowModal }) => {
             />
             <form className={styles.form_container}>
                 <div className={styles.slide_list}>
-                    {newStory.data &&
-                        newStory.data.map((_, idx) => {
-                            return (
-                                <div
-                                    className={cn(styles.slide_card, {
-                                        [styles.active_slide]: idx === index,
-                                    })}
-                                    key={idx}
-                                >
-                                    Slide {idx + 1}
-                                    {idx > 2 ? (
-                                        <IoCloseCircleOutline
-                                            className={styles.delete_slide}
-                                            onClick={() =>
-                                                handleDeleteSlide(idx)
-                                            }
-                                        />
-                                    ) : null}
-                                </div>
-                            );
-                        })}
-                    {newStory.data.length < 6 ? (
+                    {renderSlideCards()}
+                    {newStory.data.length < 6 && (
                         <div
                             className={cn(
                                 styles.slide_card,
@@ -134,111 +256,12 @@ const AddStoryModal = ({ setShowModal }) => {
                         >
                             Add +
                         </div>
-                    ) : null}
+                    )}
                 </div>
-                <div className={styles.slide_form}>
-                    <div className={styles.form_item}>
-                        <div className={styles.input_label}>Heading : </div>
-                        <input
-                            className={styles.input}
-                            name="heading"
-                            placeholder="Your heading"
-                            onChange={handleChange}
-                            value={
-                                newStory.data[index] &&
-                                newStory.data[index].heading
-                            }
-                        />
-                    </div>
-                    <div className={styles.form_item}>
-                        <div className={styles.input_label}>Description : </div>
-                        <textarea
-                            className={cn(
-                                styles.input,
-                                styles.description_input
-                            )}
-                            name="content"
-                            placeholder="Story Description"
-                            onChange={handleChange}
-                            value={
-                                newStory.data[index] &&
-                                newStory.data[index].content
-                            }
-                        />
-                    </div>
-                    <div className={styles.form_item}>
-                        <div className={styles.input_label}>Image : </div>
-                        <input
-                            className={styles.input}
-                            name="imageUrl"
-                            placeholder="Add image url"
-                            onChange={handleChange}
-                            value={
-                                newStory.data[index] &&
-                                newStory.data[index].imageUrl
-                            }
-                        />
-                    </div>
-                    <div className={styles.form_item}>
-                        <div className={styles.input_label}>Heading : </div>
-                        <div className={cn(styles.input, styles.category_btn)}>
-                            {newStory.metaData.category || "Select category"}
-                            {!dropDown ? (
-                                <FaChevronDown
-                                    className={styles.chevron}
-                                    onClick={handleDropDown}
-                                />
-                            ) : (
-                                <FaChevronUp
-                                    className={styles.chevron}
-                                    onClick={handleDropDown}
-                                />
-                            )}
-                            {dropDown ? (
-                                <div className={styles.category_items}>
-                                    {categoryItems.map((item, idx) => {
-                                        return (
-                                            <div
-                                                key={idx}
-                                                className="cursor"
-                                                onClick={() =>
-                                                    handleSetCategory(item)
-                                                }
-                                            >
-                                                {item}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                            ) : null}
-                        </div>
-                    </div>
-                </div>
+                <div className={styles.slide_form}>{renderFormItems()}</div>
             </form>
             <div className={styles.form_buttons}>
-                <div className={styles.navigation_btn}>
-                    <Button
-                        className={styles.button}
-                        onClick={() => handleNavBtn("prev")}
-                        color="#7EFF73"
-                    >
-                        Previous
-                    </Button>
-                    <Button
-                        className={styles.button}
-                        onClick={() => handleNavBtn("next")}
-                        color="#73ABFF"
-                    >
-                        Next
-                    </Button>
-                </div>
-                <Button
-                    className={styles.button}
-                    color="#FF7373"
-                    onClick={handleSubmit}
-                >
-                    Post
-                </Button>
+                <div className={styles.navigation_btn}>{renderButtons()}</div>
             </div>
         </Modal>
     );

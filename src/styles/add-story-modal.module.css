@@ -142,6 +142,7 @@
 }
 
 .navigation_btn {
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: 0.55rem;
@@ -156,4 +157,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.post_button {
+    margin-left: auto;
 }
