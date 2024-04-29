@@ -1,14 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classNames from "classnames";
+import { SwipStoryContext } from "../context";
 import Category from "../components/Category";
 import FilterCard from "../components/FilterCard";
 import Navbar from "../components/Navbar";
+import Story from "../components/Story/Story";
 
 import styles from "../styles/home-page.module.css";
 
 const HomePage = () => {
     const filterTexts = ["All", "Medical", "Fruits", "World", "India"];
     const [selectedText, setSelectedText] = useState([]);
+    const { showStory, storyData } = useContext(SwipStoryContext);
 
     const handleOnClick = (text) => {
         if (selectedText.includes(text)) {
@@ -21,8 +24,9 @@ const HomePage = () => {
     };
 
     return (
-        <div className={styles.home_page}>
+        <div className={classNames(styles.home_page)}>
             <Navbar />
+            {showStory && <Story data={storyData} />}
             <div className={styles.homepage_content}>
                 <div
                     className={classNames(

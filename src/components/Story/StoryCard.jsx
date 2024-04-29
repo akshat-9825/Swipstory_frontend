@@ -1,11 +1,28 @@
+import { useContext } from "react";
+import { SwipStoryContext } from "../../context";
 import PropTypes from "prop-types";
 import DummyStoryImage from "../../assets/images/DummyStoryCard.png";
 
 import styles from "../../styles/story-card.module.css";
 
 const StoryCard = ({ heading, content, imageUrl }) => {
+    const { setShowStory, setStoryData } = useContext(SwipStoryContext);
+
+    const handleOnClick = () => {
+        setStoryData((prevArray) => [
+            ...prevArray,
+            {
+                heading: "Heading",
+                content: "Content",
+                imageUrl: "",
+                likes: 0,
+            },
+        ]);
+        setShowStory(true);
+    };
+
     return (
-        <div className={styles.story_card_container}>
+        <div className={styles.story_card_container} onClick={handleOnClick}>
             <img
                 src={imageUrl ? imageUrl : DummyStoryImage}
                 alt="Dummy Story Card Image"

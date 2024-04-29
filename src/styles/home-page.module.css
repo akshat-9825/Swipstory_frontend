@@ -1,5 +1,6 @@
 .home_page {
     height: 100%;
+    overflow-y: auto;
 }
 
 .homepage_content {

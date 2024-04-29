@@ -24,6 +24,7 @@
     color: #8e8e8e;
     min-height: 20rem;
     justify-content: space-between;
+    gap: 2rem;
 }
 
 .button {

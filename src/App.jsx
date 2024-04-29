@@ -1,7 +1,12 @@
+import { SwipStoryProvider } from "./context";
 import HomePage from "./pages/HomePage";
 
 function App() {
-    return <HomePage />;
+    return (
+        <SwipStoryProvider>
+            <HomePage />
+        </SwipStoryProvider>
+    );
 }
 
 export default App;
