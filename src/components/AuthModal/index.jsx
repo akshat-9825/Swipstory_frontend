@@ -45,7 +45,6 @@ const AuthModal = ({ setShowModal, type }) => {
             setError("Please enter Password");
         } else {
             setError("");
-            console.log("Form Data: ", formData);
         }
     };
 

@@ -4,7 +4,7 @@ import styles from "../../styles/avatar.module.css";
 
 const Avatar = ({ text, className }) => {
     const capitalizedText = text.charAt(0).toUpperCase();
-    console.log(text, capitalizedText);
+
     return (
         <div className={cn(styles.avatar_container, className)}>
             {capitalizedText}

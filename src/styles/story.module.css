@@ -24,9 +24,19 @@
 
 .slide {
     height: 60.45rem;
+    width: 33.4rem;
+    border-radius: 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    position: relative;
+    background: linear-gradient(
+        180deg,
+        #000000 15%,
+        rgba(0, 0, 0, 0) 50%,
+        rgba(0, 0, 0, 0) 50%,
+        #000000 80%
+    );
 }
 
 .slide_background_image {
@@ -37,17 +47,6 @@
     left: 0;
     border-radius: 2rem;
     z-index: -1;
-}
-
-.slide {
-    position: relative;
-    background: linear-gradient(
-        180deg,
-        #000000 15%,
-        rgba(0, 0, 0, 0) 50%,
-        rgba(0, 0, 0, 0) 50%,
-        #000000 80%
-    );
 }
 
 .arrow {

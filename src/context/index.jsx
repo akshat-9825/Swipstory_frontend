@@ -4,33 +4,48 @@ import PropTypes from "prop-types";
 const initialSwipStoryState = {
     showStory: false,
     setShowStory: () => {},
-    storyData: [
-        {
-            heading: "",
-            content: "",
-            imageUrl: "",
+    storyData: {
+        data: [
+            {
+                heading: "",
+                content: "",
+                imageUrl: "",
+            },
+        ],
+        metaData: {
             likes: 0,
+            category: "",
         },
-    ],
+    },
     setStoryData: () => {},
     data: "",
     setData: () => {},
-    user: {},
+    user: {
+        name: "Akshat Dwivedi",
+        email: "akshat10dwivedi@gmail.com",
+    },
     setUser: () => {},
+    categoryItems: [],
+    setCategoryItems: () => {},
 };
 
 const SwipStoryContext = createContext(initialSwipStoryState);
 
 const SwipStoryProvider = ({ children }) => {
     const [showStory, setShowStory] = useState(false);
-    const [storyData, setStoryData] = useState([
-        {
-            heading: "",
-            content: "",
-            imageUrl: "",
+    const [storyData, setStoryData] = useState({
+        data: [
+            {
+                heading: "",
+                content: "",
+                imageUrl: "",
+            },
+        ],
+        metaData: {
             likes: 0,
+            category: "",
         },
-    ]);
+    });
     const [data, setData] = useState([
         {
             heading: "Heading comes here",
@@ -58,7 +73,11 @@ const SwipStoryProvider = ({ children }) => {
             imageUrl: "",
         },
     ]);
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({
+        name: "Akshat Dwivedi",
+        email: "akshat10dwivedi@gmail.com",
+    });
+    const [categoryItems, setCategoryItems] = useState([]);
 
     const value = {
         showStory,
@@ -69,6 +88,8 @@ const SwipStoryProvider = ({ children }) => {
         setData,
         user,
         setUser,
+        categoryItems,
+        setCategoryItems,
     };
 
     return (

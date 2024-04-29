@@ -77,17 +77,14 @@ const Story = () => {
     };
 
     const handleClose = () => {
-        setStoryData((prev) => {
-            const newArray = prev.slice(0, -1);
-            return newArray;
-        });
+        setStoryData({});
         setShowStory(false);
     };
 
     const renderSlide = (slide) => (
         <div className={styles.slide}>
             <img
-                src={slide.imageUrl ? slide.imageUrl : backgroundImg}
+                src={slide.imageUrl || backgroundImg}
                 alt="story_image"
                 className={styles.slide_background_image}
             />
@@ -110,7 +107,7 @@ const Story = () => {
                     <FaBookmark className={styles.bookmark_icon} />
                     <div className={styles.like_container}>
                         <FaHeart className={styles.like_icon} />
-                        {slide.likes}
+                        {storyData.metaData.likes}
                     </div>
                 </div>
             </div>
@@ -120,14 +117,14 @@ const Story = () => {
     return (
         <div className={styles.backdrop}>
             <div className={styles.story_container}>
-                {storyData.length > 1 ? (
+                {storyData.data.length > 1 ? (
                     <Slider {...settings}>
-                        {storyData.map((slide, index) => (
+                        {storyData.data.map((slide, index) => (
                             <div key={index}>{renderSlide(slide)}</div>
                         ))}
                     </Slider>
                 ) : (
-                    <div>{renderSlide(storyData[0])}</div>
+                    <div>{renderSlide(storyData.data[0])}</div>
                 )}
             </div>
         </div>

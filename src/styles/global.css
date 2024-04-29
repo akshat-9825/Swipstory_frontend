@@ -53,3 +53,7 @@ body {
         background-position: -100% 0;
     }
 }
+
+.cursor {
+    cursor: pointer;
+}

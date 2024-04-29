@@ -8,6 +8,7 @@ import AuthModal from "../AuthModal";
 import Button from "../Button";
 
 import styles from "../../styles/navbar.module.css";
+import AddStoryModal from "../AddStoryModal";
 
 const buttonsData = [
     { text: "Register Now", color: "#FF7373", type: "register" },
@@ -15,7 +16,8 @@ const buttonsData = [
 ];
 
 const Navbar = () => {
-    const [showModal, setShowModal] = useState(false);
+    const [showAuthModal, setShowAuthModal] = useState(false);
+    const [addStoryModal, setAddStoryModal] = useState(false);
     const [type, setType] = useState("");
     const { user } = useContext(SwipStoryContext);
 
@@ -29,7 +31,7 @@ const Navbar = () => {
                             key={index}
                             color={button.color}
                             onClick={() => {
-                                setShowModal(true);
+                                setShowAuthModal(true);
                                 setType(button.type);
                             }}
                         >
@@ -43,15 +45,22 @@ const Navbar = () => {
                         <FaBookmark className={styles.bookmark_icon} />
                         Bookmarks
                     </Button>
-                    <Button color="#FF7373" className={styles.add_story_btn}>
+                    <Button
+                        color="#FF7373"
+                        className={styles.add_story_btn}
+                        onClick={() => setAddStoryModal(true)}
+                    >
                         Add Story
                     </Button>
                     <Avatar text={user.name || ""} />
                     <FiMenu className={styles.menu_icon} />
                 </div>
             )}
-            {showModal ? (
-                <AuthModal type={type} setShowModal={setShowModal} />
+            {showAuthModal ? (
+                <AuthModal type={type} setShowModal={setShowAuthModal} />
+            ) : null}
+            {addStoryModal ? (
+                <AddStoryModal setShowModal={setAddStoryModal} />
             ) : null}
         </div>
     );

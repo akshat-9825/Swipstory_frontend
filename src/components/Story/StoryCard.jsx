@@ -9,15 +9,23 @@ const StoryCard = ({ heading, content, imageUrl }) => {
     const { setShowStory, setStoryData } = useContext(SwipStoryContext);
 
     const handleOnClick = () => {
-        setStoryData((prevArray) => [
-            ...prevArray,
-            {
-                heading: "Heading",
-                content: "Content",
-                imageUrl: "",
+        setStoryData({
+            data: [
+                {
+                    heading: "Heading",
+                    content: "Content",
+                    imageUrl: "",
+                },
+                {
+                    heading: "Heading",
+                    content: "Content",
+                    imageUrl: "",
+                },
+            ],
+            metaData: {
                 likes: 0,
             },
-        ]);
+        });
         setShowStory(true);
     };
 
