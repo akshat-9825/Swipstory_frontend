@@ -8,21 +8,6 @@ import Modal from "../Modal";
 
 import styles from "../../styles/auth-modal.module.css";
 
-const inputFields = [
-    {
-        label: "Username",
-        type: "text",
-        name: "username",
-        placeholder: "Enter username",
-    },
-    {
-        label: "Password",
-        type: "password",
-        name: "password",
-        placeholder: "Enter password",
-    },
-];
-
 const AuthModal = ({ setShowModal, type }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [formData, setFormData] = useState({
@@ -30,6 +15,20 @@ const AuthModal = ({ setShowModal, type }) => {
         password: "",
     });
     const [error, setError] = useState("");
+    const inputFields = [
+        {
+            label: "Username",
+            type: "text",
+            name: "username",
+            placeholder: "Enter username",
+        },
+        {
+            label: "Password",
+            type: !showPassword ? "password" : "text",
+            name: "password",
+            placeholder: "Enter password",
+        },
+    ];
 
     const handleChange = (event) => {
         setFormData({
@@ -61,7 +60,7 @@ const AuthModal = ({ setShowModal, type }) => {
                     {type === "register" ? "Register" : "Login"} to SwipTory
                 </div>
                 <div className={styles.form_container}>
-                    <div className={styles.form}>
+                    <form className={styles.form}>
                         {inputFields.map((field, index) => (
                             <div className={styles.input_container} key={index}>
                                 <div className={styles.input_label}>
@@ -89,16 +88,17 @@ const AuthModal = ({ setShowModal, type }) => {
                                 )}
                             </div>
                         ))}
-                    </div>
+                    </form>
                     {error.length > 0 ? (
                         <div className={styles.error}>{error}</div>
                     ) : null}
                     <Button
-                        text={type === "register" ? "Register" : "Login"}
                         className={styles.button}
                         color="#73ABFF"
                         onClick={handleSubmit}
-                    />
+                    >
+                        {type === "register" ? "Register" : "Login"}
+                    </Button>
                 </div>
             </div>
         </Modal>

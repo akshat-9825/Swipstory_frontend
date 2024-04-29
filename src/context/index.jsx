@@ -15,6 +15,8 @@ const initialSwipStoryState = {
     setStoryData: () => {},
     data: "",
     setData: () => {},
+    user: {},
+    setUser: () => {},
 };
 
 const SwipStoryContext = createContext(initialSwipStoryState);
@@ -56,6 +58,7 @@ const SwipStoryProvider = ({ children }) => {
             imageUrl: "",
         },
     ]);
+    const [user, setUser] = useState({});
 
     const value = {
         showStory,
@@ -64,6 +67,8 @@ const SwipStoryProvider = ({ children }) => {
         setStoryData,
         data,
         setData,
+        user,
+        setUser,
     };
 
     return (
