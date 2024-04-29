@@ -1,38 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import PropTypes from "prop-types";
+import { SwipStoryContext } from "../../context";
 import StoryCard from "../Story/StoryCard";
 
 import styles from "../../styles/category.module.css";
 import Button from "../Button";
 
 const Category = ({ text }) => {
-    const data = [
-        {
-            heading: "Heading comes here",
-            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
-            imageUrl: "",
-        },
-        {
-            heading: "Heading comes here",
-            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
-            imageUrl: "",
-        },
-        {
-            heading: "Heading comes here",
-            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
-            imageUrl: "",
-        },
-        {
-            heading: "Heading comes here",
-            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
-            imageUrl: "",
-        },
-        {
-            heading: "Heading comes here",
-            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
-            imageUrl: "",
-        },
-    ];
+    const { data } = useContext(SwipStoryContext);
 
     const [limit, setLimit] = useState(4);
 

@@ -13,6 +13,8 @@ const initialSwipStoryState = {
         },
     ],
     setStoryData: () => {},
+    data: "",
+    setData: () => {},
 };
 
 const SwipStoryContext = createContext(initialSwipStoryState);
@@ -27,8 +29,42 @@ const SwipStoryProvider = ({ children }) => {
             likes: 0,
         },
     ]);
+    const [data, setData] = useState([
+        {
+            heading: "Heading comes here",
+            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
+            imageUrl: "",
+        },
+        {
+            heading: "Heading comes here",
+            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
+            imageUrl: "",
+        },
+        {
+            heading: "Heading comes here",
+            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
+            imageUrl: "",
+        },
+        {
+            heading: "Heading comes here",
+            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
+            imageUrl: "",
+        },
+        {
+            heading: "Heading comes here",
+            content: `Inspirational designs, illustrations, and graphic elements from the world&apos;s best designers.`,
+            imageUrl: "",
+        },
+    ]);
 
-    const value = { showStory, setShowStory, storyData, setStoryData };
+    const value = {
+        showStory,
+        setShowStory,
+        storyData,
+        setStoryData,
+        data,
+        setData,
+    };
 
     return (
         <SwipStoryContext.Provider value={value}>
